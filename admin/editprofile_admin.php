@@ -25,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title> Profile </title>
+        <title> Edit Profile Admin </title>
 
          
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -109,7 +109,7 @@
         
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="myprofile.php">My profile</a>
-          <a class="dropdown-item" href="addnewadmin.php">Add New Admin</a>
+          <a class="dropdown-item" href="#">Add New Admin</a>
            <a class="dropdown-item" href="settngs.php">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout.php">Logout</a>
@@ -140,11 +140,12 @@
            
                 <?php
 
-             $i = $_SESSION['email'];
-
           require '../connection/conn.php';
 
-            $q = "SELECT PICTURES FROM admin WHERE EMAIL = '$i'";
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT PICTURES FROM admin WHERE AD_ID = '$id'";
 
             $res = mysqli_query($conn, $q);
 
@@ -155,37 +156,19 @@
 
             <p class="lead"> <?php echo '<img src="../images/'.$row['PICTURES'].'" class="img-thumbnail" >';?> </p>
                     
-             <?php }}?>
+             <?php }}}?>
          
-
-
         </div>
 
-        <div class="col-md-4">
-          
-            
-
-        </div>
-
-
-
-
-      </div>
-
-      <div class="row">
-        
-          <div class="col-md-5"> </div>
-
-
-          <div class="col-md-2">
-
-            <!-- Button trigger modal -->
-<button type="button" class="btn text-white" data-toggle="modal" data-target="#updatepic">
-  Update Picture
-</button>
+        <div class="col-md-1">
+              
+              <!-- Button trigger modal -->
+<button type="button" class="btn text-white" data-toggle="modal" data-target="#updatepicture">
+  Edit
+</button> 
 
 <!-- Modal -->
-<div class="modal fade" id="updatepic" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="updatepicture" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -196,15 +179,38 @@
       </div>
       <div class="modal-body">
        <form action="../connection/adminconn.php" method="POST">
-  <div class="form-group">
-    <div class="form-group">
-    <label>Select Picture</label>
-    <input type="file" class="form-control-file" name="picture">
-    
-  </div>
 
-  </div>
-  <button type="submit" name="picbtn" class="btn text-white">Update</button>
+
+           <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT AD_ID FROM admin WHERE AD_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="adid" value="<?php echo $row['AD_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
+
+
+  <div class="form-group">
+    <label>Enter Picture</label>
+    <input type="file" class="form-control" name="Picture">
+   </div> 
+  <button type="submit" name="uupbtn" class="btn text-white">Update</button>
 </form>
       </div>
       <div class="modal-footer">
@@ -214,11 +220,11 @@
   </div>
 </div>
 
+            </div> <br>
 
-    </div>
+        <div class="col-md-4"></div>
 
 
-    <div class="col-md-5"> </div> 
 
 
       </div>
@@ -252,12 +258,12 @@
 
                 <?php
 
-               $i = $_SESSION['email']; 
-
           require '../connection/conn.php';
 
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
 
-            $q = "SELECT * FROM admin WHERE EMAIL= '$i'";
+            $q = "SELECT * FROM admin WHERE AD_ID = '$id'";
 
             $res = mysqli_query($conn, $q);
 
@@ -268,7 +274,7 @@
 
             <p class="lead"> <?php echo $row['AD_NAME'];?> </p>
                     
-             <?php }}?>
+             <?php }}}?>
          
 
         
@@ -276,8 +282,8 @@
            </div>
 
             <div class="col-md-1">
-
-                <!-- Button trigger modal -->
+              
+              <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatename">
   Edit
 </button> 
@@ -294,12 +300,35 @@
       </div>
       <div class="modal-body">
        <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT AD_ID FROM admin WHERE AD_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="adid" value="<?php echo $row['AD_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
   <div class="form-group">
     <label>Enter Name</label>
     <input type="text" class="form-control" name="name" placeholder="Enter Name">
    
   </div>
-  <button type="submit" name="namupbtn" class="btn text-white">Update</button>
+  <button type="submit" name="nupbtn" class="btn text-white">Update</button>
 </form>
       </div>
       <div class="modal-footer">
@@ -308,8 +337,7 @@
     </div>
   </div>
 </div>
-              
-          
+
             </div> <br>
 
         <div class="col-md-2"></div>
@@ -321,12 +349,12 @@
 
             <?php
 
-            $i = $_SESSION['email'];
-
           require '../connection/conn.php';
 
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
 
-            $q = "SELECT * FROM admin WHERE EMAIL = '$i'";
+            $q = "SELECT * FROM admin WHERE AD_ID = '$id'";
 
             $res = mysqli_query($conn, $q);
 
@@ -337,18 +365,19 @@
 
             <p class="lead"> <?php echo $row['EMAIL'];?> </p>
                     
-             <?php }}?>
+             <?php }}}?>
 
         </div>
 
          <div class="col-md-1">
            
-              <!-- Button trigger modal -->
+    
+    
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updateemail">
   Edit
 </button>
 
-<!-- Modal -->
+
 <div class="modal fade" id="updateemail" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
@@ -368,7 +397,7 @@
   </div>
    
   </div>
-  <button type="submit" name="emaupbtn" class="btn text-white">Update</button>
+  <button type="submit" name="eupbtn" class="btn text-white">Update</button>
 </form>
       </div>
       <div class="modal-footer">
@@ -377,28 +406,30 @@
     </div>
   </div>
 </div>
-    
-         </div>
+
+
+         </div> 
 
         <div class="col-md-2"></div>
-    
+        
+      </div>
 
-   </div>
 
-    <div class="row">
+      <div class="row">
 
         <div class="col-md-3"> 
 
           <h5> Password </h5>
-         
-            <?php
+          
 
-            $i = $_SESSION['email'];
+                <?php
 
           require '../connection/conn.php';
 
-        
-            $q = "SELECT * FROM admin WHERE EMAIL = '$i'";
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT * FROM admin WHERE AD_ID = '$id'";
 
             $res = mysqli_query($conn, $q);
 
@@ -409,17 +440,19 @@
 
             <p class="lead"> <?php echo $row['PASSWORD'];?> </p>
                     
-             <?php }}?>
+             <?php }}}?>
+         
+
         
 
            </div>
 
-        <div class="col-md-1">
-             
-                 <!-- Button trigger modal -->
+            <div class="col-md-1">
+              
+              <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatepassword">
   Edit
-</button>
+</button> 
 
 <!-- Modal -->
 <div class="modal fade" id="updatepassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -434,14 +467,11 @@
       <div class="modal-body">
        <form action="../connection/adminconn.php" method="POST">
   <div class="form-group">
-    <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Enter Password">
-    
+    <label>Enter Password</label>
+    <input type="text" class="form-control" name="name" placeholder="Enter Password">
+   
   </div>
-
-  </div>
-  <button type="submit" name="passupbtn" class="btn text-white">Update</button>
+  <button type="submit" name="pupbtn" class="btn text-white">Update</button>
 </form>
       </div>
       <div class="modal-footer">
@@ -451,57 +481,17 @@
   </div>
 </div>
 
+            </div> <br>
+
+        <div class="col-md-2"></div>
+
+        
       </div>
 
-        <div class="col-md-2"></div>
 
-
-        <div class="col-md-5"> 
-
-          
-
-           </div>
-
-        <div class="col-md-2"></div>
-
-    
-
-   </div>
-
-   
-    
   </div>
 </div> 
-
-    <br>
-
-
-   <div class="card">
-  <div class="card-body">
-    <h3 class="card-title">Delete an Account</h3>
-    <br>
-
-      <div class="row">
-
-      <div class="col-md-4">
-        
-        <p class="lead"> Are you sure to delete this account </p>
-
-      </div>
-
-      <div class="col-md-1"> 
-
-         <form action="../connection/adminconn.php" method="POST">
-
-  <button type="submit" name="ad_delsub" class="btn text-white">DELETE</button>
-</form>
- 
- 
-      </div>
-   
-        </div>
-  </div>
-</div>
+  
 
 <br><br>
 

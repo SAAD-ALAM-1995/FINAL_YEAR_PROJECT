@@ -270,6 +270,59 @@
                </div>
 
 
+               <div class="line"></div>
+
+                <h2> Admin </h2>
+
+        
+              <div class="table-responsive">
+  <table class="table">
+    
+        <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">PICTURES</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">PASSWORD</th>
+      <th scope="col">UPDATE</th>
+      <th scope="col">DELETE</th>
+    </tr>
+  </thead>
+
+       <?php
+
+         require '../connection/conn.php';
+
+         $q = "SELECT * FROM admin";
+
+         $res = mysqli_query($conn, $q);
+
+         if ($res) {
+             while ($row = mysqli_fetch_array($res)) {
+                 ?>
+
+
+  <tbody>
+    <tr>
+      <td scope="row"> <?php echo $row['AD_ID'];?> </td>
+      <td scope="row"> <?php echo $row['AD_NAME'];?> </td>
+      <td scope="row"> <?php echo  '<img src="../images/'.$row['PICTURES'].'" id="img" class="img-fluid">'; ?> </td>
+      <td scope="row"> <?php echo $row['EMAIL']?> </td>
+      <td scope="row"> <?php echo $row['PASSWORD']?> </td>
+      <td scope="row"> <a href="editprofile_admin.php?uid= <?php echo $row['AD_ID']; ?>"> <button type="submit" class="btn"> Update </button> </a> </td>
+      <td scope="row"> <a href="editprofile_admin.php?uid= <?php echo $row['AD_ID']; ?>"> <button type="submit" class="btn"> Delete </button> </a> </td>
+    </tr>
+
+  </tbody>
+
+        
+ <?php }} ?>
+
+
+  </table>
+</div>
+
 
                 <div class="line"></div>
 
@@ -322,7 +375,7 @@
       <td scope="row"> <?php echo $row['CITY']?> </td>
       <td scope="row"> <?php echo $row['COUNTRY']?> </td>
       <td scope="row"> <a href="editprofile.php?uid= <?php echo $row['CUSTOMER_ID']; ?>"> <button type="submit" class="btn"> Update </button> </a> </td>
-      <td scope="row"> <input type="submit" name="delbtn" class="btn" value="Delete"> </td>
+      <td scope="row"> <input type="submit" name="c_delbtn" class="btn" value="Delete"> </td>
     </tr>
 
   </tbody>
@@ -384,7 +437,7 @@
       <td scope="row"> <?php echo $row['COUNTRY']?> </td>
        <td scope="row"> <?php echo $row['REVIEW']?> </td>
       <td scope="row"> <a href="editreview.php?uid= <?php echo $row['CUSTOMER_ID']; ?>"> <button type="submit" class="btn"> Update </button> </a> </td>
-      <td scope="row"> <input type="submit" name="delbtn" class="btn" value="Delete"> </td>
+      <td scope="row"> <input type="submit" name="r_delbtn" class="btn" value="Delete"> </td>
     </tr>
 
   </tbody>
