@@ -5,7 +5,7 @@
     //insert chat message
 
       if (isset($_POST['messsub'])) {
-           $text = base64_encode($_POST['text']);
+           $text = $_POST['text'];
       	  $cid = $_POST['cid'];
       	  $tocid = $_POST['tocid'];
       	  $date = $_POST['date'];

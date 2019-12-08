@@ -16,7 +16,7 @@
      $tmp = $_FILES['picture']['tmp_name'];
      $gender = $_POST['gender'];
      $nic = $_POST['nic'];
-     $password = md5($_POST['password']);
+     $password = base64_encode($_POST['password']);
      $dob = $_POST['dob'];
      $city = $_POST['city'];
      $country = $_POST['country'];
@@ -306,7 +306,6 @@
 
     //insert notification
 
-
     if (isset($_POST['nsub'])) {
         $ncid = $_POST['ncid'];
         $ntocid = $_POST['ntocid'];
@@ -331,65 +330,242 @@
                  
        } 
     }
-   
 
 
 
 
-    //insert notification for done chat between user and professional
+    //insert qualification
 
+if (isset($_POST['qasub'])) {
+    
+     $customerid = $_POST['cid'];
+     $professionaltype = $_POST['ptype'];
 
-    if (isset($_POST['no_sub'])) {
-        $cid = $_POST['cid'];
-        $tocid = $_POST['tocid'];
-        $txt = $_POST['text'];
-         $fees = $_POST['fees'];
+     $degree = $_FILES['degree']['name'];
+     $tmp=$_FILES['degree']['tmp_name'];
 
+     $type = $_POST['type'];
+     $designation = $_POST['designation'];
+     $experience = $_POST['experience'];
 
-        $query = "INSERT INTO notification (PAYMENT, to_CUSTOMER_ID, `TEXT`, CUSTOMER_ID) VALUES ('$fees',   '$tocid', '$txt', '$cid')";
+     $mcertificate = $_FILES['mcertificate']['name'];
+     $tmp=$_FILES['mcertificate']['tmp_name'];
 
-        $res = mysqli_query($conn, $query);
+     $icertificate = $_FILES['icertificate']['name'];
+     $tmp=$_FILES['icertificate']['tmp_name'];
 
-        
-      
-    }
+     $universityname = $_POST['university'];
+     $schoolname = $_POST['scname'];
+     $collagename = $_POST['coname']; 
 
+ $query = "INSERT INTO `qualification`( `CUSTOMER_ID`, `PROFESSIONAL_TYPE`, `DEGREE`, `TYPE`, `DESIGNATION`, `EXPERINCE`, `MATRIC_CERTIFICATE`, `INTERMEDIATE_CERTIFICATE`, `UNIVERSITY_NAME`, `SCHOOL_NAME`, `COLLAGE_NAME`) VALUES ('$customerid','$professionaltype','$degree','$type','$designation','$experience','$mcertificate','$icertificate','$universityname','$schoolname','$collagename')";
 
-
-
-    //insert review
-
-
-    if (isset($_POST['rewsub'])) {
-        $cid = $_POST['cid'];
-        $tocid = $_POST['tocid'];
-        $review = $_POST['review'];
-         ;
-
-
-        $query = "INSERT INTO rate (REVIEW, CUSTOMER_ID,  to_CUSTOMER_ID) VALUES ('$review',   '$cid', '$tocid')";
-
-        $res = mysqli_query($conn, $query);
-
-        
-       if ($res) {
+    $res = mysqli_query($conn, $query);
+if ($res) {
                 
-               
-        header("Location: ../customer/customerpanel.php");  
+                move_uploaded_file($tmp, "../images/$degree");
+        move_uploaded_file($tmp, "../images/$mcertificate");
+        move_uploaded_file($tmp, "../images/$icertificate");
+        header("Location: ../customer/addqualification.php");  
   
        }
+else{
+  header("Location: ../customer/addqualification.php");
+}
+     }
+
+//update qualification
 
 
-      else {
-             header("Location: ../customer/chat.php");  
-                 
-       } 
-    }
+//update  professional type
+
+if (isset($_POST['uptype'])) {
    
+      $ptype = $_POST['ptype'];
 
+      $q = "UPDATE qualification SET PROFESSIONAL_TYPE = '$ptype' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
+
+//update  type
+
+if (isset($_POST['utype'])) {
+   
+      $type = $_POST['type'];
+
+      $q = "UPDATE qualification SET TYPE= '$type' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
+
+
+//update  designation
+
+if (isset($_POST['udesignation'])) {
+   
+      $designation = $_POST['designation'];
+
+      $q = "UPDATE qualification SET DESIGNATION = '$designation' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
+
+
+//update  experience
+
+if (isset($_POST['uexperience'])) {
+   
+      $experience = $_POST['experience'];
+
+      $q = "UPDATE qualification SET EXPERIENCE = '$experience' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
+
+
+//update  university name
+
+if (isset($_POST['uuniversity'])) {
+   
+      $university = $_POST['university'];
+
+      $q = "UPDATE qualification SET UNIVERSITY_NAME = '$university' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
+
+
+
+//update  degree
+
+if (isset($_POST['udegree'])) {
+   
+      $degree = $_POST['degree'];
+
+      $q = "UPDATE qualification SET DEGREE = '$degree' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
+
+
+//update  matric certificate
+
+if (isset($_POST['umcertificate'])) {
+   
+      $mcertificate = $_POST['mcertificate'];
+
+      $q = "UPDATE qualification SET MATRIC_CERTIFICATE = '$mcertificate' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
+
+
+//update  intermediate certificate
+
+if (isset($_POST['uicertificate'])) {
+   
+      $icertificate = $_POST['icertificate'];
+
+      $q = "UPDATE qualification SET INTERMEDIATE_CERTIFICATE = '$icertificate' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
+
+
+//update  school name
+if (isset($_POST['uscname'])) {
+   
+      $scname = $_POST['scname'];
+
+      $q = "UPDATE qualification SET SCHOOL_NAME = '$scname' WHERE CUSTOMER_ID = '$i'";
+
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }
+     header("Location: ../customer/settings.php");
+  } 
     
+    //update  COLLEGE NAME
+    
+    if (isset($_POST['uconame'])) {
+   
+      $coname = $_POST['coname'];
 
+      $q = "UPDATE qualification SET COLLAGE_NAME = '$coname' WHERE CUSTOMER_ID = '$i'";
 
+      $res = mysqli_query($conn, $q);
+      
+
+      if ($res) {
+           
+            header("Location: ../customer/settings.php");
+      }else{
+     header("Location: ../customer/settings.php");
+  } 
+
+   }
+    
 
 
 ?>
