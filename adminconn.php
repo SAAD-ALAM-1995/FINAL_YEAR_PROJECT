@@ -180,14 +180,16 @@
 
   if (isset($_POST['n_up_btn'])) {
   
+      $adid = $_POST['adid'];
+
       $name = $_POST['name'];
 
-      $q = "UPDATE admin SET AD_NAME = '$name' WHERE EMAIL = '$a'";
+      $q = "UPDATE admin SET AD_NAME = '$name' WHERE AD_ID = '$adid'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile_admin.php");
       }
 
       else {
@@ -196,32 +198,13 @@
 } 
 
 
-  //UPDATE EMAIL
-
- if (isset($_POST['e_up_btn'])) {
-  
-      $email = $_POST['email'];
-
-      $q = "UPDATE admin SET EMAIL = '$email' WHERE EMAIL = '$a'";
-
-      $res = mysqli_query($conn, $q);
-
-      if ($res) {
-        header("Location: ../admin/adminpanel.php");
-      } 
-      else {
-        header("Location: ../admin/editprofile_admin.php");
-  }
-}
-
-
   //UPDATE PASSWORD
 
     if (isset($_POST['pass_up_btn'])) {
   
-      $pass = base64_encode($_POST['password']);
-
       $adid = $_POST['adid'];
+      
+      $pass = base64_encode($_POST['password']);
 
       $q = "UPDATE admin SET PASSWORD = '$pass' WHERE AD_ID = '$adid'";
 
@@ -272,7 +255,7 @@
 
       if ($res) {
         move_uploaded_file($tmp, "../images/$picture");
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       }
 
       else {
@@ -285,14 +268,14 @@
   if (isset($_POST['n_cus_up_btn'])) {
   
      $id = $_POST['id'];
-      $name = $_POST['name'];
+     $name = $_POST['name'];
 
       $q = "UPDATE customer SET CUSTOMER_NAME = '$name' WHERE CUSTOMER_ID = '$id'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       }
 
       else {
@@ -300,22 +283,20 @@
   }
 } 
 
-
- 
   
     //UPDATE GENDER
 
   if (isset($_POST['gen_cus_up_btn'])) {
   
-      $gen = $_POST['gender'];
       $id = $_POST['id'];
+      $gen = $_POST['gender'];
 
       $q = "UPDATE customer SET GENDER = '$gen' WHERE CUSTOMER_ID = '$id'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       }
 
       else {
@@ -328,8 +309,8 @@
 
  if (isset($_POST['cnic_cus_up_btn'])) {
   
+      $id = $_POST['id'];
       $cnic = $_POST['cnicnumber'];
-       $id = $_POST['id'];
 
 
       $q = "UPDATE customer SET CNIC_NUMBER = '$cnic' WHERE CUSTOMER_ID = '$id'";
@@ -337,7 +318,7 @@
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       } 
       else {
         header("Location: ../admin/editprofile.php");
@@ -349,14 +330,15 @@
 
   if (isset($_POST['dob_cus_up_btn'])) {
   
-      $dob = $_POST['dob'];
+      $id = $_POST['id'];
+      $dob = $_POST['date_of_birth'];
 
-      $q = "UPDATE customer SET DATE_OF_BIRTH = '$dob' WHERE EMAIL = '$a'";
+      $q = "UPDATE customer SET DATE_OF_BIRTH = '$dob' WHERE CUSTOMER_ID = '$id'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       }
 
       else {
@@ -369,14 +351,15 @@
 
  if (isset($_POST['city_cus_up_btn'])) {
   
+      $id = $_POST['id'];
       $city = $_POST['city'];
 
-      $q = "UPDATE customer SET CITY = '$city' WHERE EMAIL = '$a'";
+      $q = "UPDATE customer SET CITY = '$city' WHERE CUSTOMER_ID = '$id'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       } 
       else {
         header("Location: ../admin/editprofile.php");
@@ -388,14 +371,15 @@
 
   if (isset($_POST['coun_cus_up_btn'])) {
   
-      $coun = $_POST['coun'];
+      $id = $_POST['id'];
+      $country = $_POST['country'];
 
-      $q = "UPDATE customer SET COUNTRY = '$coun' WHERE EMAIL = '$a'";
+      $q = "UPDATE customer SET COUNTRY = '$country' WHERE CUSTOMER_ID = '$id'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       }
 
       else {
@@ -408,14 +392,15 @@
 
  if (isset($_POST['rev_cus_up_btn'])) {
   
+      $id = $_POST['id'];
       $rev = $_POST['rev'];
 
-      $q = "UPDATE customer SET REVIEW = '$rev' WHERE EMAIL = '$a'";
+      $q = "UPDATE customer SET REVIEW = '$rev' WHERE CUSTOMER_ID = '$id'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       } 
       else {
         header("Location: ../admin/editprofile.php");
@@ -427,14 +412,15 @@
 
   if (isset($_POST['fees_cus_up_btn'])) {
   
+      $id = $_POST['id'];
       $fees = $_POST['fees'];
 
-      $q = "UPDATE customer SET FEES = '$fees' WHERE EMAIL = '$a'";
+      $q = "UPDATE customer SET FEES = '$fees' WHERE CUSTOMER_ID = '$id'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       }
 
       else {
@@ -445,30 +431,30 @@
 
   //UPDATE ROLE
 
- if (isset($_POST['role_cus_up_btn'])) {
+    /*if (isset($_POST['role_cus_up_btn'])) {
   
-      $role = $_POST['role'];
+      $id = $_POST['id']
+      $Role = $_POST['role'];
 
-      $q = "UPDATE customer SET ROLE = '$role' WHERE EMAIL = '$a'";
+      $q = "UPDATE customer SET ROLE = '$Role' WHERE CUSTOMER_ID = '$id'";
 
       $res = mysqli_query($conn, $q);
 
       if ($res) {
-        header("Location: ../admin/adminpanel.php");
+        header("Location: ../admin/editprofile.php");
       } 
       else {
         header("Location: ../admin/editprofile.php");
   }
-}
+}*/
 
 
   //UPDATE PASSWORD
 
     if (isset($_POST['pass_cus_up_btn'])) {
   
-      $pass = base64_encode($_POST['password']);
-
       $id = $_POST['id'];
+      $pass = base64_encode($_POST['password']);
 
       $q = "UPDATE customer SET PASSWORD = '$pass' WHERE CUSTOMER_ID = '$id'";
 
@@ -505,6 +491,7 @@
       // UPDATE REVIEW PART FROM ADMIN PANEL    
 
       if (isset($_POST['rev_up_btn'])) {
+
       $id = $_POST['id'];
 
       $review = $_POST['name'];
@@ -523,4 +510,26 @@
       }
 
       //ENDED UPDATE REVIEW PART FROM ADMIN PANEL  
+
+
+      //DELETE NOTIFICATIONS FROM ADMIN PANEL 
+
+      if (isset($_POST['not_del_sub'])) {
+
+        $id = $_POST['id'];
+
+        $q = "DELETE FROM notification WHERE NOTIFICATIONS ID = '$id'";
+
+        $res = mysqli_query($conn, $q);
+
+        if ($res) {
+          header("Location: ../admin/adminpanel.php");
+        }
+        else {
+          header("Location: ../admin/adminpanel.php");
+        }
+      }
+
+    //ENDED DELETE NOTIFICATION PART FROM ADMIN PANEL 
+
 ?>
