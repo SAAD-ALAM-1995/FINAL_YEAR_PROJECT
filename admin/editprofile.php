@@ -12,12 +12,7 @@
       header("Location: ../login.html");
       }
 
-
-
   ?>
-
-
-
 
 <html>
     <head>
@@ -54,12 +49,8 @@
 
     </head>
 
-   
-
-
-
+  
     <body>
-
 
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -103,13 +94,12 @@
                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo $row['AD_NAME'];?>  </a>
 
                   <?php }}?>
-         
-       
 
         
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="myprofile.php">My profile</a>
           <a class="dropdown-item" href="#">Add New Admin</a>
+          <a class="dropdown-item" href="security.php">Security</a>
            <a class="dropdown-item" href="settngs.php">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout.php">Logout</a>
@@ -157,18 +147,12 @@
             <p class="lead"> <?php echo '<img src="../images/'.$row['PICTURE'].'" class="img-thumbnail" >';?> </p>
                     
              <?php }}}?>
-         
-
 
         </div>
 
         <div class="col-md-4"></div>
 
-
-
-
       </div>
-
       
    <div class="row">
 
@@ -193,7 +177,7 @@
 
         <div class="col-md-3"> 
 
-          <h5> Name </h5>
+          <h5> NAME </h5>
           
 
                 <?php
@@ -215,17 +199,14 @@
             <p class="lead"> <?php echo $row['CUSTOMER_NAME'];?> </p>
                     
              <?php }}}?>
-         
-
         
-
            </div>
 
             <div class="col-md-1">
               
               <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatename">
-  Edit
+  EDIT
 </button> 
 
 <!-- Modal -->
@@ -233,23 +214,50 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Name</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE NAME CUSTOMER</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
+
        <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT * FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+             
+             <?php }}}?>
+
   <div class="form-group">
-    <label>Enter Name</label>
-    <input type="text" class="form-control" name="name" placeholder="Enter Name">
-   
+    <label>ENTER NAME CUSTOMER</label>
+    <input type="text" class="form-control" name="name" placeholder="Enter Name Customer">
   </div>
-  <button type="submit" name="uupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
+   
+  <button type="submit" name="n_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -289,41 +297,6 @@
          <div class="col-md-1">
            
     
-    
-<button type="button" class="btn text-white" data-toggle="modal" data-target="#updateemail">
-  Edit
-</button>
-
-
-<div class="modal fade" id="updateemail" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Email</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <form action="../connection/adminconn.php" method="POST">
-  <div class="form-group">
-    <div class="form-group">
-    <label>Enter Email</label>
-    <input type="email" class="form-control" name="email" placeholder="Enter email">
-    
-  </div>
-   
-  </div>
-  <button type="submit" name="eupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
          </div>
 
@@ -336,7 +309,7 @@
 
         <div class="col-md-3"> 
 
-          <h5> Gender </h5>
+          <h5> GENDER </h5>
          
             <?php
 
@@ -365,7 +338,7 @@
               
                <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updategender">
-  Edit
+  EDIT
 </button>
 
 <!-- Modal -->
@@ -373,7 +346,7 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Gender</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE GENDER</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -395,16 +368,40 @@
     Female
   </label>
 </div>
+         <?php
 
-    
-  </div>
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT CUSTOMER_ID FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
+  
    
-  </div>
-  <button type="submit" name="gupbtn" class="btn text-white">Update</button>
-</form>
+  <button type="submit" name="gen_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
       </div>
+    </div>
+  </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -418,7 +415,7 @@
 
         <div class="col-md-3">
           
-          <h5> NIC.NO </h5>
+          <h5> CNIC NUMBER </h5>
          
            <?php
 
@@ -446,7 +443,7 @@
               
                              <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatenic">
-  Edit
+  EDIT
 </button>
 
 <!-- Modal -->
@@ -454,43 +451,65 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update NIC.no</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UDATE CNIC NUMBER</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
-       <form action="../connection/adminconn.php" method="POST">
-  <div class="form-group">
-    <div class="form-group">
-    <label>NIC.no</label>
-    <input type="text" class="form-control" name="nic" placeholder="Enter NIC.no">
-    
-  </div>
 
+       <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT CUSTOMER_ID FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
+  <div class="form-group">
+    <label>ENTER CNIN NUMBER</label>
+    <input type="text" class="form-control" name="cnicnumber" placeholder="Enter CNIN NUMBER">
   </div>
-  <button type="submit" name="niupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
+   
+  <button type="submit" name="cnic_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
 </div>
 
+            
             </div>
 
         <div class="col-md-2"></div>
-    
 
-   </div>
 
-    <div class="row">
-
-        <div class="col-md-3"> 
-
-          <h5> Date of Birth </h5>
+        <div class="col-md-3">
+          
+          <h5> DATE OF BIRTH </h5>
          
            <?php
 
@@ -512,13 +531,13 @@
                     
              <?php }}}?>
 
-           </div>
+        </div>
 
-       <div class="col-md-1">
+        <div class="col-md-1">
               
                              <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatedob">
-  Edit
+  EDIT
 </button>
 
 <!-- Modal -->
@@ -526,31 +545,57 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Date of Birth</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE DATE OF BIRTH</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
-       <form action="../connection/adminconn.php" method="POST">
-  <div class="form-group">
-    <div class="form-group">
-    <label>Date of Birth</label>
-    <input type="date" name="dob" class="form-control">
-    
-  </div>
 
+       <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT CUSTOMER_ID FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
+  <div class="form-group">
+    <label>ENTER DATE OF BIRTH</label>
+    <input type="text" class="form-control" name="date_of_birth" placeholder="Enter DATE OF BIRTH">
   </div>
-  <button type="submit" name="dobbtn" class="btn text-white">Update</button>
-</form>
-      </div>
+   
+  <button type="submit" name="dob_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
 </div>
 
+            
             </div>
 
         <div class="col-md-2"></div>
@@ -558,7 +603,7 @@
 
         <div class="col-md-3">
           
-          <h5> City </h5>
+          <h5> CITY </h5>
           <p class="lead"> 
 
              <?php
@@ -590,7 +635,7 @@
               
                              <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatecity">
-  Edit
+  EDIT
 </button>
 
 <!-- Modal -->
@@ -598,26 +643,51 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update City</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE CITY</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
-       <form action="../connection/adminconn.php" method="POST">
-  <div class="form-group">
-    <div class="form-group">
-    <label>City</label>
-    <input type="text" class="form-control" name="city" placeholder="Enter City">
-    
-  </div>
 
+       <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT CUSTOMER_ID FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
+  <div class="form-group">
+    <label>ENTER CITY</label>
+    <input type="text" class="form-control" name="city" placeholder="Enter City">
   </div>
-  <button type="submit" name="cibtn" class="btn text-white">Update</button>
-</form>
-      </div>
+   
+  <button type="submit" name="city_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -633,7 +703,7 @@
 
         <div class="col-md-3"> 
 
-          <h5> Country </h5>
+          <h5> COUNTRY </h5>
           <p class="lead"> 
 
                 <?php
@@ -664,7 +734,7 @@
         <div class="col-md-1">
               
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatecountry">
-  Edit
+  EDIT
 </button>
 
 <!-- Modal -->
@@ -672,39 +742,263 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Country</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE COUNTRY</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
-       <form action="../connection/adminconn.php" method="POST">
-  <div class="form-group">
-    <div class="form-group">
-    <label>Country</label>
-    <input type="text" class="form-control" name="country" placeholder="Enter Country">
-    
-  </div>
 
+       <form action="../connection/adminconn.php" method="POST">
+         
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT CUSTOMER_ID FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
+  <div class="form-group">
+    <label>ENTER COUNTRY</label>
+    <input type="text" class="form-control" name="country" placeholder="Enter Country">
   </div>
-  <button type="submit"  name="cobtn" class="btn text-white">Update</button>
-</form>
-      </div>
+   
+  <button type="submit" name="coun_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+            </div>
+
+        <div class="col-md-2"></div>
+
+   </div>
+
+    <div class="row">
+
+        <div class="col-md-3"> 
+
+          <h5> ROLE OF CUSTOMER </h5>
+          
+
+                <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT * FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+            <p class="lead"> <?php echo $row['ROLE'];?> </p>
+                    
+             <?php }}}?>
+        
+           </div>
+
+            <div class="col-md-1">
+              
+              <!-- Button trigger modal -->
+<button type="button" class="btn text-white" data-toggle="modal" data-target="#updaterole">
+  EDIT
+</button> 
+
+<!-- Modal -->
+<div class="modal fade" id="updaterole" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE ROLE OF CUSTOMER</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+
+       <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT * FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+             
+             <?php }}}?>
+
+  <div class="form-group">
+    <label>ENTER ROLE OF CUSTOMER</label>
+    <input type="text" class="form-control" name="role" placeholder="Enter Role Of Customer">
+  </div>
+   
+  <button type="submit" name="role_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
 </div>
 
+
             </div>
 
         <div class="col-md-2"></div>
 
+   </div>
+
+
+      <div class="row">
 
         <div class="col-md-3"> 
 
-          <h5> Password </h5>
+          <h5> FEES </h5>
+          
+
+                <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT * FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+            <p class="lead"> <?php echo $row['FEES'];?> </p>
+                    
+             <?php }}}?>
+        
+           </div>
+
+            <div class="col-md-1">
+              
+              <!-- Button trigger modal -->
+<button type="button" class="btn text-white" data-toggle="modal" data-target="#updatefees">
+  EDIT
+</button> 
+
+<!-- Modal -->
+<div class="modal fade" id="updatefees" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE FEES</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+
+       <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT * FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+             
+             <?php }}}?>
+
+  <div class="form-group">
+    <label>ENTER FEES</label>
+    <input type="text" class="form-control" name="fees" placeholder="Enter Fees">
+  </div>
+   
+  <button type="submit" name="fees_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+            </div>
+
+        <div class="col-md-2"></div>
+
+   </div>
+
+    <div class="row">
+
+        <div class="col-md-3"> 
+
+          <h5> PASSWORD </h5>
          
            <?php
 
@@ -731,7 +1025,7 @@
         <div class="col-md-1">
               
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatepassword">
-  Edit
+  EDIT
 </button>
 
 
@@ -739,48 +1033,72 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Password</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE PASSWORD</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
-       <form action="../connection/adminconn.php" method="POST">
-  <div class="form-group">
-    <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Enter Password">
-    
-  </div>
 
+       <form action="../connection/adminconn.php" method="POST">
+         
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT CUSTOMER_ID FROM customer WHERE CUSTOMER_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
+  <div class="form-group">
+    <label>ENTER PASSWORD</label>
+    <input type="password" class="form-control" name="password" placeholder="ENTER PASSWORD">
   </div>
-  <button type="submit" name="passbtn" class="btn text-white">Update</button>
-</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+   
+  <button type="submit" name="pass_cus_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
 </div>
 
+      <div class="modal-footer">
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
+      </div>
+     </div>
+    </div>
+  </div>
 
 
-
-            </div>
+      </div>
 
         <div class="col-md-2"></div>
     
 
    </div>
-    
-  </div>
-</div> 
-  
+
 
 <br><br>
 
-
+          </form>
+      </div>
+    </div>
+  </div>
 </div>
 
   <footer class="page-footer font-small mdb-color pt-4">

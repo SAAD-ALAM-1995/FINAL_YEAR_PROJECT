@@ -12,12 +12,7 @@
       header("Location: ../login.html");
       }
 
-
-
   ?>
-
-
-
 
 <html>
     <head>
@@ -25,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title> Edit Profile Admin </title>
+        <title> EDIT PROFILE ADMIN </title>
 
          
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -54,13 +49,7 @@
 
     </head>
 
-   
-
-
-
     <body>
-
-
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand text-primary" href="#">Professional Connect</a>
@@ -81,10 +70,7 @@
     <a class="nav-link text-dark" href="notification.php">Notification</a>
   </li>
  <li class="nav-item dropdown">
-     
-
-
-         
+              
              <?php 
 
              require '../connection/conn.php';
@@ -110,6 +96,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="myprofile.php">My profile</a>
           <a class="dropdown-item" href="#">Add New Admin</a>
+          <a class="dropdown-item" href="security.php">Security</a>
            <a class="dropdown-item" href="settngs.php">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout.php">Logout</a>
@@ -164,7 +151,7 @@
               
               <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatepicture">
-  Edit
+  EDIT
 </button> 
 
 <!-- Modal -->
@@ -172,11 +159,12 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Picture</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE PICTURE</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
        <form action="../connection/adminconn.php" method="POST">
 
@@ -207,14 +195,15 @@
 
 
   <div class="form-group">
-    <label>Enter Picture</label>
-    <input type="file" class="form-control" name="Picture">
+    <label>ENTER PICTURE</label>
+    <input type="file" class="form-control" name="picture">
    </div> 
-  <button type="submit" name="uupbtn" class="btn text-white">Update</button>
+  <button type="submit" name="adpic_up_btn" class="btn text-white">UPDATE</button>
 </form>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -234,7 +223,7 @@
 
         <div class="col-md-4"> 
 
-          <h3> Profile Details </h3>
+          <h3> PROFILE DETAILS </h3>
 
            </div>
 
@@ -253,7 +242,7 @@
 
         <div class="col-md-3"> 
 
-          <h5> Name </h5>
+          <h5> NAME </h5>
           
 
                 <?php
@@ -285,7 +274,7 @@
               
               <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatename">
-  Edit
+  EDIT
 </button> 
 
 <!-- Modal -->
@@ -293,12 +282,14 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Name</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE NAME</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
+
        <form action="../connection/adminconn.php" method="POST">
          <?php
 
@@ -324,15 +315,18 @@
              <?php }}}?>
 
   <div class="form-group">
-    <label>Enter Name</label>
-    <input type="text" class="form-control" name="name" placeholder="Enter Name">
-   
+    <label>ENTER NAME</label>
+    <input type="text" class="form-control" name="name" placeholder="ENTER NAME">
   </div>
-  <button type="submit" name="nupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
+   
+  <button type="submit" name="n_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -345,7 +339,7 @@
 
         <div class="col-md-3">
           
-          <h5> Email </h5>
+          <h5> EMAIL </h5>
 
             <?php
 
@@ -374,7 +368,7 @@
     
     
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updateemail">
-  Edit
+  EDIT
 </button>
 
 
@@ -382,26 +376,51 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Email</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE EMAIL</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
+
        <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT EMAIL FROM admin WHERE AD_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="adid" value="<?php echo $row['EMAIL']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
   <div class="form-group">
-    <div class="form-group">
-    <label>Enter Email</label>
-    <input type="email" class="form-control" name="email" placeholder="Enter email">
-    
+    <label>ENTER EMAIL</label>
+    <input type="text" class="form-control" name="email" placeholder="Enter Email">
   </div>
    
-  </div>
-  <button type="submit" name="eupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
+  <button type="submit" name="e_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -419,7 +438,7 @@
 
         <div class="col-md-3"> 
 
-          <h5> Password </h5>
+          <h5> PASSWORD </h5>
           
 
                 <?php
@@ -451,7 +470,7 @@
               
               <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatepassword">
-  Edit
+  EDIT
 </button> 
 
 <!-- Modal -->
@@ -459,23 +478,51 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Password</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE PASSWORD</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
+
        <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT AD_ID FROM admin WHERE AD_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="adid" value="<?php echo $row['AD_ID']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
   <div class="form-group">
-    <label>Enter Password</label>
-    <input type="text" class="form-control" name="name" placeholder="Enter Password">
-   
+    <label>ENTER PASSWORD</label>
+    <input type="password" class="form-control" name="password" placeholder="ENTER PASSWORD">
   </div>
-  <button type="submit" name="pupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
+   
+  <button type="submit" name="pass_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>      
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>

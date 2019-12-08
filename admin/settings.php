@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
    <?php
 
       session_start();
@@ -11,13 +10,7 @@
       else{
       header("Location: ../login.html");
       }
-
-
-
   ?>
-
-
-
 
 <html>
     <head>
@@ -25,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title> Profile </title>
+        <title> SETTINGS </title>
 
          
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -54,13 +47,7 @@
 
     </head>
 
-   
-
-
-
     <body>
-
-
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand text-primary" href="#">Professional Connect</a>
@@ -81,10 +68,7 @@
     <a class="nav-link text-dark" href="notification.php">Notification</a>
   </li>
  <li class="nav-item dropdown">
-     
-
-
-         
+              
              <?php 
 
              require '../connection/conn.php';
@@ -103,9 +87,6 @@
                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo $row['AD_NAME'];?>  </a>
 
                   <?php }}?>
-         
-       
-
         
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="myprofile.php">My profile</a>
@@ -279,7 +260,7 @@
 
                 <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updatename">
-  Edit
+  EDIT
 </button> 
 
 <!-- Modal -->
@@ -287,23 +268,51 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Name</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE NAME</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
+
        <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT AD_NAME FROM admin WHERE AD_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="adid" value="<?php echo $row['AD_NAME']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
   <div class="form-group">
-    <label>Enter Name</label>
-    <input type="text" class="form-control" name="name" placeholder="Enter Name">
-   
+    <label>ENTER NAME</label>
+    <input type="text" class="form-control" name="name" placeholder="ENTER NAME">
   </div>
-  <button type="submit" name="namupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
+   
+  <button type="submit" name="nam_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -345,7 +354,7 @@
            
               <!-- Button trigger modal -->
 <button type="button" class="btn text-white" data-toggle="modal" data-target="#updateemail">
-  Edit
+  EDIT
 </button>
 
 <!-- Modal -->
@@ -353,26 +362,51 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Email</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE EMAIL</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
+
        <form action="../connection/adminconn.php" method="POST">
+         <?php
+
+          require '../connection/conn.php';
+
+          if (isset($_GET['uid'])) {
+           $id = $_GET['uid'];
+
+            $q = "SELECT EMAIL FROM admin WHERE AD_ID = '$id'";
+
+            $res = mysqli_query($conn, $q);
+
+            if ($res) {
+              while ($row = mysqli_fetch_array($res)) {
+
+                ?>
+
+          <div class="form-group">
+    <input type="hidden" class="form-control" name="adid" value="<?php echo $row['EMAIL']?>">
+   </div> 
+ 
+                    
+             <?php }}}?>
+
   <div class="form-group">
-    <div class="form-group">
-    <label>Enter Email</label>
-    <input type="email" class="form-control" name="email" placeholder="Enter email">
-    
+    <label>ENTER EMAIL</label>
+    <input type="text" class="form-control" name="email" placeholder="ENTER EMAIL">
   </div>
    
-  </div>
-  <button type="submit" name="emaupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
+  <button type="submit" name="ema_up_btn" class="btn text-white">UPDATE</button>
+  
+  </form>
+
+</div>
+
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -385,67 +419,8 @@
 
    </div>
 
-    <div class="row">
-
-        <div class="col-md-3"> 
-
-          <h5> Password </h5>
-         
-            <?php
-
-            $i = $_SESSION['email'];
-
-          require '../connection/conn.php';
-
-        
-            $q = "SELECT * FROM admin WHERE EMAIL = '$i'";
-
-            $res = mysqli_query($conn, $q);
-
-            if ($res) {
-              while ($row = mysqli_fetch_array($res)) {
-
-                ?>
-
-            <p class="lead"> <?php echo $row['PASSWORD'];?> </p>
-                    
-             <?php }}?>
-        
-
-           </div>
-
-        <div class="col-md-1">
-             
-                 <!-- Button trigger modal -->
-<button type="button" class="btn text-white" data-toggle="modal" data-target="#updatepassword">
-  Edit
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="updatepassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Update Password</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <form action="../connection/adminconn.php" method="POST">
-  <div class="form-group">
-    <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Enter Password">
-    
-  </div>
-
-  </div>
-  <button type="submit" name="passupbtn" class="btn text-white">Update</button>
-</form>
-      </div>
       <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -491,9 +466,11 @@
 
       <div class="col-md-1"> 
 
-         <form action="../connection/adminconn.php" method="POST">
+      <form action="../connection/adminconn.php" method="POST">
 
-  <button type="submit" name="ad_delsub" class="btn text-white">DELETE</button>
+     <input type="hidden" name="adid" value=" <?php echo $row['AD_ID']; ?> " >    
+
+  <button type="submit" name="ad_del_sub" class="btn text-white">DELETE</button>
 </form>
  
  

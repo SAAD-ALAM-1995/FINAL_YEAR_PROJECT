@@ -25,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title> Add new Admin </title>
+        <title> ADD NEW ADMIN </title>
 
          
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -45,7 +45,6 @@
 
      <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css" media="all">
   
-
       <link rel="stylesheet" href="../css/footer.css">
 
        <link rel="stylesheet" href="../css/login.css">
@@ -79,9 +78,7 @@
   </li>
  <li class="nav-item dropdown">
      
-
-
-         
+       
              <?php 
 
              require '../connection/conn.php';
@@ -107,6 +104,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="profile.php">My profile</a>
           <a class="dropdown-item" href="addnewadmin.php">Add New Admin</a>
+          <a class="dropdown-item" href="security.php">Security</a>
            <a class="dropdown-item" href="settings.php">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout.php">Logout</a>
@@ -132,7 +130,7 @@
         <div class="col-md-4"></div>
 
 
-        <div class="col-md-4"> <h3> Add New Admin </h3> </div>
+        <div class="col-md-4"> <h3> ADD NEW ADMIN </h3> </div>
 
 
         <div class="col-md-4"></div>

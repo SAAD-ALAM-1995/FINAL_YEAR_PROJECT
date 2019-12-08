@@ -12,7 +12,11 @@
       header("Location: ../login.html");
       }
 
+
+
   ?>
+
+
 
 
 <html>
@@ -21,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title> EDIT REVIEW </title>
+        <title> SECURITY </title>
 
          
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -41,21 +45,17 @@
 
      <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css" media="all">
   
-
       <link rel="stylesheet" href="../css/footer.css">
 
        <link rel="stylesheet" href="../css/login.css">
 
        <link rel="stylesheet" href="../css/userpanel.css">
 
+          <link rel="stylesheet" href="css/style.css">
+
     </head>
 
-   
-
-
-
     <body>
-
 
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -67,7 +67,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <ul class="nav ml-auto">
+  	<ul class="nav ml-auto">
 
        <li class="nav-item">
     <a class="nav-link text-dark" href="adminpanel.php">Home</a>
@@ -78,9 +78,7 @@
   </li>
  <li class="nav-item dropdown">
      
-
-
-         
+       
              <?php 
 
              require '../connection/conn.php';
@@ -104,10 +102,10 @@
 
         
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="myprofile.php">My profile</a>
-          <a class="dropdown-item" href="#">Add New Admin</a>
+          <a class="dropdown-item" href="profile.php">My profile</a>
+          <a class="dropdown-item" href="addnewadmin.php">Add New Admin</a>
           <a class="dropdown-item" href="security.php">Security</a>
-           <a class="dropdown-item" href="settngs.php">Settings</a>
+           <a class="dropdown-item" href="settings.php">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout.php">Logout</a>
         </div>
@@ -128,151 +126,42 @@
     <div class="container">
 
       <div class="row">
-        
+                
+                 <div class="col-md-3"> </div>
 
-        <div class="col-md-4"></div>
+                   <div class="col-md-6"> 
 
-        <div class="col-md-4">
-          
-           
-                <?php
-
-          require '../connection/conn.php';
-
-          if (isset($_GET['uid'])) {
-           $id = $_GET['uid'];
-
-            $q = "SELECT PICTURE FROM customer WHERE CUSTOMER_ID = '$id'";
-
-            $res = mysqli_query($conn, $q);
-
-            if ($res) {
-              while ($row = mysqli_fetch_array($res)) {
-
-                ?>
-
-            <p class="lead"> <?php echo '<img src="../images/'.$row['PICTURE'].'" class="img-thumbnail" >';?> </p>
-                    
-             <?php }}}?>
-         
+                    <h2 class="text-center"> RESET PASSWORD </h2> <br>
 
 
-        </div>
-
-        <div class="col-md-4"></div>
-
-
-
-
-      </div>
-
-           <br><br>
-
-
-         <div class="row">   
-          
-
-
-         <div class="col-md-3">
-          
-          <h5> REVIEW </h5>
-         
-           <?php
-
-          require '../connection/conn.php';
-
-          if (isset($_GET['uid'])) {
-           $id = $_GET['uid'];
-
-            $q = "SELECT * FROM customer WHERE CUSTOMER_ID = '$id'";
-
-            $res = mysqli_query($conn, $q);
-
-            if ($res) {
-              while ($row = mysqli_fetch_array($res)) {
-
-                ?>
-
-            <p class="lead"> <?php echo $row['REVIEW'];?> </p>
-                    
-             <?php }}}?>
-
-        </div>
-
-        <div class="col-md-1">
-              
-                             <!-- Button trigger modal -->
-<button type="button" class="btn text-white" data-toggle="modal" data-target="#updatenic">
-  EDIT
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="updatenic" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">UPDATE REVIEW</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <div class="modal-body">
-
-       <form action="../connection/adminconn.php" method="POST">
-         <?php
-
-          require '../connection/conn.php';
-
-          if (isset($_GET['uid'])) {
-           $id = $_GET['uid'];
-
-            $q = "SELECT CUSTOMER_ID FROM customer WHERE CUSTOMER_ID = '$id'";
-
-            $res = mysqli_query($conn, $q);
-
-            if ($res) {
-              while ($row = mysqli_fetch_array($res)) {
-
-                ?>
-
-          <div class="form-group">
-    <input type="hidden" class="form-control" name="id" value="<?php echo $row['CUSTOMER_ID']?>">
-   </div> 
- 
-                    
-             <?php }}}?>
-
+                    <form action="../connection/adminconn.php" method="POST">
   <div class="form-group">
-    <label>ENTER REVIEW</label>
-    <input type="text" class="form-control" name="name" placeholder="ENTER REVIEW">
-  </div>
-   
-  <button type="submit" name="rev_up_btn" class="btn text-white">UPDATE</button>
+    <label >ENTER NEW PASSWORD</label>
+    <input type="password" class="form-control" name="password" placeholder="Enter New Password">
+   </div>
   
-  </form>
-
-</div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn text-white" data-dismiss="modal">CLOSE</button>
-      </div>
-    </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">CONFRIM PASSWORD</label>
+    <input type="password" class="form-control" name="confirm_password" id="exampleInputPassword1" placeholder="Enter Confrim Password">
   </div>
-</div>
 
+   <div class="form-group">
 
-
-
-          </div>
-      
+    <a  href="../customeremail/customeremail.html"> Forget Password </a>
     
   </div>
-</div> 
-  
+ 
+  <button type="submit" name="sec_up_sub" class="btn float-right">Submit</button>
 
-<br><br>
+</form>
 
+                  </div>
+
+                  <div class="col-md-3"> </div>
+
+   </div>
+
+      <br><br>
 
 </div>
 

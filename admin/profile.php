@@ -25,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title> Profile </title>
+        <title> PROFILE </title>
 
          
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -109,7 +109,7 @@
         
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="myprofile.php">My profile</a>
-          <a class="dropdown-item" href="#">Add New Admin</a>
+          <a class="dropdown-item" href="addnewadmin.php">Add New Admin</a>
            <a class="dropdown-item" href="settings.php">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout.php">Logout</a>
@@ -268,7 +268,7 @@
 
         <div class="col-md-3"> 
 
-          <h5> Gender </h5>
+          <h5> PASSWORD </h5>
          
             <?php
 
